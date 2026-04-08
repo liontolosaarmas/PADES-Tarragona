@@ -107,6 +107,44 @@ app.post('/api/pades-patients', async (req, res) => {
   res.status(201).json(newPatient);
 });
 
+app.put('/api/pades-patients/:id', async (req, res) => {
+  const id = Number(req.params['id']);
+  if (!Number.isFinite(id)) {
+    res.status(400).json({ message: 'Id invalido.' });
+    return;
+  }
+
+  const paciente = typeof req.body?.paciente === 'string' ? req.body.paciente.trim() : '';
+  const razon = typeof req.body?.razon === 'string' ? req.body.razon.trim() : '';
+  const descripcion = typeof req.body?.descripcion === 'string' ? req.body.descripcion.trim() : '';
+
+  if (!paciente || !razon) {
+    res.status(400).json({ message: 'Nombre y razon son obligatorios.' });
+    return;
+  }
+
+  const currentPatients = await readPatients();
+  const existingPatient = currentPatients.find((item) => item.id === id);
+  if (!existingPatient) {
+    res.status(404).json({ message: 'Paciente no encontrado.' });
+    return;
+  }
+
+  const updatedPatient: PadesPatient = {
+    ...existingPatient,
+    paciente,
+    razon,
+    descripcion,
+  };
+
+  const updatedPatients = currentPatients.map((item) =>
+    item.id === id ? updatedPatient : item
+  );
+
+  await writePatients(updatedPatients);
+  res.json(updatedPatient);
+});
+
 /**
  * Serve static files from /browser
  */

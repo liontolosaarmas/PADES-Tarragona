@@ -23,8 +23,14 @@
   color: #51707b;
 }
 
-.create-btn {
+.action-row {
   margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.create-btn {
   border: 0;
   border-radius: 0.62rem;
   padding: 0.58rem 0.95rem;
@@ -33,6 +39,26 @@
   color: #f2fbf8;
   background: linear-gradient(135deg, #155f68 0%, #216787 100%);
   cursor: pointer;
+}
+
+.edit-btn {
+  border: 1px solid #8db1a9;
+  border-radius: 0.62rem;
+  padding: 0.58rem 0.95rem;
+  font: inherit;
+  font-weight: 700;
+  color: #29535f;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background: #f1f7f5;
+}
+
+.edit-btn:focus-visible {
+  outline: 2px solid #0f5d8d;
+  outline-offset: 2px;
 }
 
 .create-btn:hover {

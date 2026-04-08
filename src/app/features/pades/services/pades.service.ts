@@ -64,6 +64,54 @@ export class PadesService {
     }
   }
 
+  async updatePatient(id: number, paciente: string, razon: string, descripcion: string): Promise<Pades | null> {
+    await this.initPromise;
+
+    const trimmedPaciente = paciente.trim();
+    const trimmedRazon = razon.trim();
+    const trimmedDescripcion = descripcion.trim();
+    if (!trimmedPaciente || !trimmedRazon) {
+      return null;
+    }
+
+    try {
+      const response = await fetch(`/api/pades-patients/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          paciente: trimmedPaciente,
+          razon: trimmedRazon,
+          descripcion: trimmedDescripcion
+        })
+      });
+
+      if (!response.ok) {
+        return null;
+      }
+
+      const updatedItem: unknown = await response.json();
+      if (!this.isValidPadesItem(updatedItem)) {
+        return null;
+      }
+
+      const normalizedItem: Pades = {
+        ...updatedItem,
+        razon: updatedItem.razon ?? trimmedRazon,
+        descripcion: updatedItem.descripcion ?? trimmedDescripcion
+      };
+
+      this.padesItems.update((items) =>
+        items.map((item) => (item.id === id ? normalizedItem : item))
+      );
+
+      return normalizedItem;
+    } catch {
+      return null;
+    }
+  }
+
   getById(id: number): Pades | null {
     return this.padesItems().find((item) => item.id === id) ?? null;
   }

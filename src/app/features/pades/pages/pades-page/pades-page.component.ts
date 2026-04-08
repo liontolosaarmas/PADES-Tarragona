@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { PadesDetailComponent } from '../../components/pades-detail/pades-detail.component';
 import { PadesListComponent } from '../../components/pades-list/pades-list.component';
 import { PadesService } from '../../services/pades.service';
-import { log } from 'console';
 
 @Component({
   selector: 'app-pades-page',
@@ -37,6 +36,19 @@ export class PadesPageComponent {
     const newItem = await this.padesService.addPatient(payload.patientName, payload.reason, payload.description);
     if (newItem) {
       this.selectedId.set(newItem.id);
+    }
+  }
+
+  async onUpdatePatient(payload: { id: number; patientName: string; reason: string; description: string }): Promise<void> {
+    const updated = await this.padesService.updatePatient(
+      payload.id,
+      payload.patientName,
+      payload.reason,
+      payload.description
+    );
+
+    if (updated) {
+      this.selectedId.set(updated.id);
     }
   }
 }

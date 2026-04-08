@@ -5,9 +5,14 @@
       <p class="subtitle">Unidad de atencion paliativa domiciliaria</p>
     </header>
 
-    <button type="button" class="create-btn" (click)="openCreateForm()">
-      Crear nuevo paciente
-    </button>
+    <div class="action-row">
+      <button type="button" class="create-btn" (click)="openCreateForm()">
+        Crear nuevo paciente
+      </button>
+      <button type="button" class="edit-btn" (click)="openEditForm()">
+        Editar paciente
+      </button>
+    </div>
 
     @if (isCreateFormOpen()) {
       <form class="add-patient-form" (ngSubmit)="savePatient()" novalidate>
@@ -42,6 +47,53 @@
         <div class="form-actions">
           <button type="button" class="cancel-btn" (click)="cancelCreateForm()">Cancelar</button>
           <button type="submit" class="save-btn">Guardar</button>
+        </div>
+
+        @if (patientNameControl.touched && patientNameControl.invalid) {
+          <p class="input-error">Introduce un nombre valido (minimo 2 caracteres).</p>
+        }
+        @if (reasonControl.touched && reasonControl.invalid) {
+          <p class="input-error">La razon es obligatoria (minimo 3 caracteres).</p>
+        }
+        @if (descriptionControl.touched && descriptionControl.invalid) {
+          <p class="input-error">La descripcion no puede superar 280 caracteres.</p>
+        }
+      </form>
+    }
+
+    @if (isEditFormOpen()) {
+      <form class="add-patient-form" (ngSubmit)="saveEditedPatient()" novalidate>
+        <label class="input-label" for="edit-patient-name-input">Nombre del paciente</label>
+        <input
+          id="edit-patient-name-input"
+          type="text"
+          class="patient-input"
+          [formControl]="patientNameControl"
+          placeholder="Ej: Laura Pujol"
+          autocomplete="name"
+        />
+
+        <label class="input-label description-label" for="edit-patient-reason-input">Razon</label>
+        <input
+          id="edit-patient-reason-input"
+          type="text"
+          class="patient-input"
+          [formControl]="reasonControl"
+          placeholder="Ej: Control de dolor cronico"
+        />
+
+        <label class="input-label description-label" for="edit-patient-description-input">Descripcion</label>
+        <textarea
+          id="edit-patient-description-input"
+          class="description-input"
+          [formControl]="descriptionControl"
+          rows="3"
+          placeholder="Ej: Requiere seguimiento telefonico diario y visita semanal."
+        ></textarea>
+
+        <div class="form-actions">
+          <button type="button" class="cancel-btn" (click)="cancelCreateForm()">Cancelar</button>
+          <button type="submit" class="save-btn">Guardar cambios</button>
         </div>
 
         @if (patientNameControl.touched && patientNameControl.invalid) {
