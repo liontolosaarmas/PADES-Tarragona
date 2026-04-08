@@ -1,0 +1,27 @@
+<section class="list-wrapper" aria-label="Listado de equipos PADES">
+  <h2 class="title">Equipo PADES disponible</h2>
+
+  <ul class="list" role="list">
+    @for (item of items(); track item.id) {
+      <li>
+        <button
+          type="button"
+          class="list-item"
+          [class.active]="item.id === selectedId()"
+          [class.inactive]="!item.activo"
+          [attr.aria-pressed]="item.id === selectedId()"
+          (click)="selectPades(item.id)"
+        >
+          <span class="name-row">
+            <span class="name">{{ item.nombre }}</span>
+            <span class="status" [class.off]="!item.activo">
+              {{ item.activo ? 'Activo' : 'Inactivo' }}
+            </span>
+          </span>
+
+          <span class="meta">{{ item.municipio }}</span>
+        </button>
+      </li>
+    }
+  </ul>
+</section>

@@ -1,0 +1,36 @@
+<section class="detail-wrapper" aria-label="Detalle del equipo PADES">
+  @if (item(); as selectedItem) {
+    <header class="detail-header">
+      <h2 class="title">{{ selectedItem.nombre }}</h2>
+      <p class="subtitle">Unidad de atencion paliativa domiciliaria</p>
+    </header>
+
+    <dl class="detail-grid">
+      <div class="item-row">
+        <dt>Paciente asignado</dt>
+        <dd>{{ selectedItem.paciente }}</dd>
+      </div>
+
+      <div class="item-row">
+        <dt>Municipio</dt>
+        <dd>{{ selectedItem.municipio }}</dd>
+      </div>
+
+      <div class="item-row">
+        <dt>Estado del equipo</dt>
+        <dd>
+          <span class="badge" [class.badge-off]="!selectedItem.activo">
+            {{ selectedItem.activo ? 'Activo' : 'Inactivo' }}
+          </span>
+        </dd>
+      </div>
+    </dl>
+
+    <aside class="support-note" aria-label="Resumen operativo">
+      <h3>Resumen operativo</h3>
+      <p>Seguimiento continuo con coordinacion medica y de enfermeria para mantener la atencion en domicilio.</p>
+    </aside>
+  } @else {
+    <p class="empty">Selecciona un equipo para ver el detalle.</p>
+  }
+</section>

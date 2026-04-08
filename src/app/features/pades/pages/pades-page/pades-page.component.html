@@ -1,0 +1,29 @@
+<section class="page-shell" aria-labelledby="pades-title">
+  <header class="hero">
+    <p class="eyebrow">Atencion Domiciliaria</p>
+    <h1 id="pades-title">PADES Tarragona</h1>
+    <p class="intro">
+      Coordinacion de cuidados paliativos en domicilio para pacientes y familias,
+      con seguimiento clinico continuo y apoyo multidisciplinar.
+    </p>
+
+    <div class="hero-tags" role="list" aria-label="Indicadores del servicio">
+      <span role="listitem" class="tag"><strong>24h</strong> cobertura</span>
+      <span role="listitem" class="tag"><strong>1</strong> equipo activo</span>
+      <span role="listitem" class="tag"><strong>Tarragona</strong> area de atencion</span>
+    </div>
+  </header>
+
+  <main class="content-grid">
+    <section class="panel panel-list" aria-label="Listado PADES Tarragona">
+      <app-pades-list
+        [items]="items()"
+        (selected)="onSelectPades($event)"
+      />
+    </section>
+
+    <section class="panel panel-detail" aria-label="Detalle PADES Tarragona">
+      <app-pades-detail [item]="selectedItem()" />
+    </section>
+  </main>
+</section>

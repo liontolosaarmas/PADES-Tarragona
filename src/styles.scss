@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Newsreader:opsz,wght@6..72,600;6..72,700&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: 'Manrope', 'Segoe UI', sans-serif;
+	color: #172f39;
+	background:
+		radial-gradient(circle at 15% 15%, #fff4e5 0%, transparent 34%),
+		radial-gradient(circle at 85% 0%, #d9f0ea 0%, transparent 28%),
+		#f2f6f4;
+}
