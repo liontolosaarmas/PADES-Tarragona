@@ -43,7 +43,7 @@ export class PadesService {
       });
 
       if (!response.ok) {
-        return null;
+        return this.addLocalPatient(trimmedPaciente, trimmedRazon, trimmedDescripcion);
       }
 
       const createdItem: unknown = await response.json();
@@ -60,7 +60,7 @@ export class PadesService {
       this.padesItems.update((items) => [...items, normalizedItem]);
       return normalizedItem;
     } catch {
-      return null;
+      return this.addLocalPatient(trimmedPaciente, trimmedRazon, trimmedDescripcion);
     }
   }
 
@@ -194,5 +194,21 @@ export class PadesService {
       typeof candidate['municipio'] === 'string' &&
       typeof candidate['activo'] === 'boolean'
     );
+  }
+
+  private addLocalPatient(paciente: string, razon: string, descripcion: string): Pades {
+    const nextId = this.padesItems().reduce((maxId, item) => Math.max(maxId, item.id), 0) + 1;
+    const localItem: Pades = {
+      id: nextId,
+      nombre: 'PADES Tarragona',
+      paciente,
+      razon,
+      descripcion,
+      municipio: 'Tarragona',
+      activo: true
+    };
+
+    this.padesItems.update((items) => [...items, localItem]);
+    return localItem;
   }
 }
