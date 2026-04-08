@@ -19,7 +19,14 @@
             </span>
           </span>
 
-          <span class="meta">{{ item.municipio }}</span>
+          <span class="meta">Paciente: {{ item.paciente }}</span>
+          @if (item.razon) {
+            <span class="sub-meta">Razon: {{ item.razon }}</span>
+          }
+          @if (item.descripcion) {
+            <span class="sub-meta">{{ item.descripcion }}</span>
+          }
+          <span class="sub-meta">{{ item.municipio }}</span>
         </button>
       </li>
     }

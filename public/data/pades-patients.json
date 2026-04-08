@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "nombre": "PADES Tarragona",
+    "paciente": "Maria Soler",
+    "razon": "Control de dolor cronico",
+    "descripcion": "Control del dolor y seguimiento semanal domiciliario.",
+    "municipio": "Tarragona",
+    "activo": true
+  },
+  {
+    "id": 2,
+    "nombre": "PADES Tarragona",
+    "paciente": "Laura P.",
+    "razon": "Seguimiento telefonico diario",
+    "descripcion": "Paciente con soporte familiar y seguimiento telefonico diario.",
+    "municipio": "Tarragona",
+    "activo": true
+  },
+  {
+    "id": 3,
+    "nombre": "PADES Tarragona",
+    "paciente": "Lionel Tolosa",
+    "razon": "Visita domiciliaria cada 48 horas",
+    "municipio": "Tarragona",
+    "activo": true
+  }
+]

@@ -18,12 +18,16 @@
     <section class="panel panel-list" aria-label="Listado PADES Tarragona">
       <app-pades-list
         [items]="items()"
+        [selectedId]="selectedId()"
         (selected)="onSelectPades($event)"
       />
     </section>
 
     <section class="panel panel-detail" aria-label="Detalle PADES Tarragona">
-      <app-pades-detail [item]="selectedItem()" />
+      <app-pades-detail
+        [item]="selectedItem()"
+        (patientAdded)="onAddPatient($event)"
+      />
     </section>
   </main>
 </section>

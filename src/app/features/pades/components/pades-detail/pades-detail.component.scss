@@ -23,6 +23,138 @@
   color: #51707b;
 }
 
+.create-btn {
+  margin-top: 1rem;
+  border: 0;
+  border-radius: 0.62rem;
+  padding: 0.58rem 0.95rem;
+  font: inherit;
+  font-weight: 700;
+  color: #f2fbf8;
+  background: linear-gradient(135deg, #155f68 0%, #216787 100%);
+  cursor: pointer;
+}
+
+.create-btn:hover {
+  filter: brightness(1.06);
+}
+
+.create-btn:focus-visible {
+  outline: 2px solid #0f5d8d;
+  outline-offset: 2px;
+}
+
+.add-patient-form {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  border: 1px solid #cde0da;
+  border-radius: 0.85rem;
+  background: #fdfefe;
+}
+
+.input-label {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #31525c;
+}
+
+.description-label {
+  margin-top: 0.7rem;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+}
+
+.form-actions {
+  margin-top: 0.8rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+
+.cancel-btn {
+  border: 1px solid #b8cdca;
+  border-radius: 0.62rem;
+  padding: 0.58rem 0.95rem;
+  font: inherit;
+  font-weight: 700;
+  color: #31525c;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background: #f2f7f6;
+}
+
+.cancel-btn:focus-visible {
+  outline: 2px solid #0f5d8d;
+  outline-offset: 2px;
+}
+
+.patient-input {
+  width: 100%;
+  border: 1px solid #bdd2cb;
+  border-radius: 0.62rem;
+  padding: 0.58rem 0.75rem;
+  font: inherit;
+  color: #183640;
+  background: #ffffff;
+}
+
+.description-input {
+  width: 100%;
+  border: 1px solid #bdd2cb;
+  border-radius: 0.62rem;
+  padding: 0.58rem 0.75rem;
+  font: inherit;
+  color: #183640;
+  background: #ffffff;
+  resize: vertical;
+  min-height: 5.2rem;
+}
+
+.patient-input:focus-visible {
+  outline: 2px solid #176f78;
+  outline-offset: 1px;
+}
+
+.description-input:focus-visible {
+  outline: 2px solid #176f78;
+  outline-offset: 1px;
+}
+
+.save-btn {
+  border: 0;
+  border-radius: 0.62rem;
+  padding: 0.58rem 0.95rem;
+  font: inherit;
+  font-weight: 700;
+  color: #f2fbf8;
+  background: linear-gradient(135deg, #1b7f71 0%, #216787 100%);
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  filter: brightness(1.06);
+}
+
+.save-btn:focus-visible {
+  outline: 2px solid #0f5d8d;
+  outline-offset: 2px;
+}
+
+.input-error {
+  margin: 0.45rem 0 0;
+  font-size: 0.8rem;
+  color: #8e2b2b;
+}
+
 .detail-grid {
   margin: 1rem 0;
   display: grid;
@@ -77,6 +209,12 @@ dd {
   margin: 0.45rem 0 0;
   font-size: 0.92rem;
   line-height: 1.5;
+}
+
+@media (max-width: 560px) {
+  .input-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .empty {

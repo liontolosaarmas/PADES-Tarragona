@@ -5,10 +5,71 @@
       <p class="subtitle">Unidad de atencion paliativa domiciliaria</p>
     </header>
 
+    <button type="button" class="create-btn" (click)="openCreateForm()">
+      Crear nuevo paciente
+    </button>
+
+    @if (isCreateFormOpen()) {
+      <form class="add-patient-form" (ngSubmit)="savePatient()" novalidate>
+        <label class="input-label" for="patient-name-input">Nombre del paciente</label>
+        <input
+          id="patient-name-input"
+          type="text"
+          class="patient-input"
+          [formControl]="patientNameControl"
+          placeholder="Ej: Laura Pujol"
+          autocomplete="name"
+        />
+
+        <label class="input-label description-label" for="patient-reason-input">Razon</label>
+        <input
+          id="patient-reason-input"
+          type="text"
+          class="patient-input"
+          [formControl]="reasonControl"
+          placeholder="Ej: Control de dolor cronico"
+        />
+
+        <label class="input-label description-label" for="patient-description-input">Descripcion</label>
+        <textarea
+          id="patient-description-input"
+          class="description-input"
+          [formControl]="descriptionControl"
+          rows="3"
+          placeholder="Ej: Requiere seguimiento telefonico diario y visita semanal."
+        ></textarea>
+
+        <div class="form-actions">
+          <button type="button" class="cancel-btn" (click)="cancelCreateForm()">Cancelar</button>
+          <button type="submit" class="save-btn">Guardar</button>
+        </div>
+
+        @if (patientNameControl.touched && patientNameControl.invalid) {
+          <p class="input-error">Introduce un nombre valido (minimo 2 caracteres).</p>
+        }
+        @if (reasonControl.touched && reasonControl.invalid) {
+          <p class="input-error">La razon es obligatoria (minimo 3 caracteres).</p>
+        }
+        @if (descriptionControl.touched && descriptionControl.invalid) {
+          <p class="input-error">La descripcion no puede superar 280 caracteres.</p>
+        }
+      </form>
+    }
+
     <dl class="detail-grid">
       <div class="item-row">
         <dt>Paciente asignado</dt>
         <dd>{{ selectedItem.paciente }}</dd>
+      </div>
+
+      <div class="item-row">
+        <dt>Descripcion</dt>
+        <dd>{{ selectedItem.descripcion || 'Sin descripcion.' }}</dd>
+      </div>
+
+      <div class="item-row">
+        <dt>Razon</dt>
+        <dd>{{ selectedItem.razon || 'Sin razon indicada.' }}</dd>
       </div>
 
       <div class="item-row">
